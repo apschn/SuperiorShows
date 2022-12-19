@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+ 
+
+{% block content %}
+<div class ="tableContents">
+    <form action='' method='POST'>
+        <div class="form-field--container">
+            <div class="form-field-float">
+                <h3>Are you sure you want to delete {{entity_name}}?</h3>
+                <div class="delete-msg-btns">
+                    <button 
+                    class="submit-button" 
+                    type = "submit" 
+                    value="DELETE"
+                    >DELETE {{delete_type}}</button>
+                    <button  
+                    class="cancel-button"
+                    onClick= "window.location.href='{{return_link}}';"
+                    type="button"
+                    value="Cancel"
+                    >Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class ="addAttributes">
+            <script>
+            function goBack() {
+                window.history.back();
+            }
+            </script>
+            <h2 class="addFormTitle">Update Venue</h2>
+            <form class="addForm" id="updateVenue" action="/update_venue" method="POST">
+                    <div class="form-field--container">
+                            <div class="form-field-float">
+                                <div class="form-field--entry">
+                                    <input
+                                    class="form-field-entry"
+                                    type="hidden"
+                                    id="venue-id"
+                                    name="venue-id"
+                                    value="{{ data[0].venue_id }}"
+                                    required>
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-name">Name: *</label><br>
+                                    <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="venue-name"
+                                    name="venue-name"
+                                    value="{{ data[0].venue_name }}"
+                                    tabindex="1"
+                                    required>
+                                </div>                       
+                                <div class="form-field--entry">
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-address">Address: *</label><br>
+                                    <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="venue-address"
+                                    name="venue-address"
+                                    value="{{ data[0].address }}"
+                                    tabindex="3"
+                                    required>
+                                </div>
+                                <div class="form-field--entry">
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-state">State: *</label><br>
+                                    <select
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="venue-state"
+                                    name="venue-state"
+                                    tabindex="5"
+                                    required>
+                                    {% for state in states %}
+                                    {% if data[0].state != state[0] %}
+                                    <option id={{state[0]}} value={{state[0]}}> {{state[1]}} </option>
+                                    {% else %}
+                                    <option id={{state[0]}} value={{state[0]}} selected> {{state[1]}} </option>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </select>
+                                </div>        
+                            </div>    
+                            <div class="form-field-float">
+                                <div class="form-field--entry">
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-capacity">Venue Capacity: *</label><br>
+                                    <input
+                                    class="form-field-entry"
+                                    type="number"
+                                    inputmode="numeric"
+                                    min="0" max="1000" step="1"
+                                    id="venue-capacity"
+                                    name="venue-capacity"
+                                    value="{{ data[0].capacity }}"
+                                    tabindex="2"
+                                    required>
+                                </div>   
+                                <div class="form-field--entry">
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-city">City: *</label><br>
+                                    <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="venue-city"
+                                    name="venue-city"
+                                    value="{{ data[0].city }}"
+                                    tabindex="4"
+                                    required>
+                                </div>
+                                <div class="form-field--entry">
+                                    <label
+                                    class="form-field--label"
+                                    for="venue-zip">Zip Code: *</label><br>
+                                    <input
+                                    class="form-field-entry"
+                                    type="tel"
+                                    pattern="[0-9]{5}"
+                                    id="venue-zip"
+                                    name="venue-zip"
+                                    title="Enter 5 digit ZIP"
+                                    placeholder="5-digit ZIP"
+                                    value="{{ data[0].zip }}"
+                                    tabindex="6"
+                                    required>
+                                </div>
+                            </div>
+                        </div>      
+            
+            <div class="form-field">
+                    <input
+                    class="submit-button" 
+                    type="submit"
+                    value="Update"  
+                    name="update_venue"
+                    tabindex="7">
+                    <button  
+                    class="cancel-button"
+                    onClick= "goBack()"
+                    type="button"
+                    value="Cancel"
+                    tabindex="8"
+                    >Cancel</button>             
+            </div>
+            </form>
+        </div>
+
+{% endblock %}

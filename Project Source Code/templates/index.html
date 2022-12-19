@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="pageTitle">{% block title %} Welcome to Superior Shows {% endblock %}</h1>
+    <h3 class="pageSubTitle"> Use the navigation links above to find what you need.</h3>
+    <img id="homepage" className="homepage-image" alt="edit" src="{{url_for('static', filename='bayfront.jpg')}}">
+    <br>
+    <br>
+{% endblock %}

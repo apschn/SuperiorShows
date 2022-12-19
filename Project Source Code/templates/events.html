@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="pageTitle">{% block title %} Manage Events {% endblock %}</h1>
+    <div class ="tableContents">
+            <div class="table-scroll">
+                <table class="entity-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Age Restriction</th>
+                        <th>General Price</th>
+                        <th>Member Price</th>
+                        <th>Venue</th>
+                        <th></th>
+                    </tr>
+                    {% for i in events %}
+                    <tr class="entity-table--row">
+                        <td class="entity-table--information">{{i['event_id']}}</td>
+                        <td class="entity-table--information">{{i['event_name']}}</td>
+                        <td class="entity-table--information">{{i['event_date']}}</td>
+                        <td class="entity-table--information">{{i['age_restriction']}}</td>
+                        <td class="entity-table--information">{{i['general_ticket_price']}}</td>
+                        <td class="entity-table--information">{{i['member_ticket_price']}}</td>
+                        <td class="entity-table--information">{{i['venue_name']}}</td>
+                        <td class="entity-table--icons-column-e">
+                            <a href="delete_event/{{i['event_id']}}">
+                                <button type="button" class="icon-button" >
+                                    <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">
+                                </button>
+                            </a>
+                            <a href="update_event/{{i.event_id}}">
+                                <button type="button" class="icon-button">
+                                    <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">
+                                </button>
+                            </a>
+                            <form class="seeAttendance" action="/filter_attendance" method="POST">
+                                <input type="hidden" id="attendance-event" name="attendance-event" value="{{i.event_id}}">
+                                <button type="submmit" class="icon-button">
+                                    <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-people.png')}}">
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="key">
+                <p class="key-item">
+                <img id="editEntity" class ="entity-table--icon" alt="attendees" src="{{url_for('static', filename='icon-people.png')}}">  View Event Attendees
+                <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">  Edit Event
+                <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">  Delete Event</p>
+            </div>  
+
+    <div class ="addAttributes">
+        <h2 class="addFormTitle">Add Event</h2>
+        <form class="addForm" action="/events" method="POST">
+            <div class="form-field--container">
+                <div class="form-field-float">
+                        <div class="form-field--entry">
+                            <div class="form-field--entry">
+                                <label
+                                    class="form-field--label"
+                                    for="event-name">Name: *</label><br>
+                                <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="event-name"
+                                    name="event-name"
+                                    tabindex="1"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-field--entry">
+                            <label
+                            class="form-field--label"
+                            for="event-min-age">Age Restriction:</label><br>
+                        <input
+                            class="form-field-entry"
+                            type="number"
+                            inputmode="numeric"
+                            min="0" max="150" step="1"
+                            id="event-min-age"
+                            name="event-min-age"
+                            tabindex="3">
+                        </input>
+                    </div>                            
+                    <div class="form-field--entry">
+                        <label
+                            class="form-field--label"
+                            for="event-price">Regular Price: *</label><br>
+                        <input
+                            class="form-field-entry"
+                            type="number"
+                            inputmode="numeric"
+                            min="0" max="1000" step="0.01"
+                            id="event-price"
+                            name="event-price"
+                            tabindex="5"
+                            required>
+                        </input>
+                    </div>
+                </div>
+                <div class="form-field-float">
+                        <div class="form-field--entry">
+                            <label
+                            class="form-field--label"
+                            for="event-venue">Venue: * </label><br>
+                        <select
+                            class="form-field-entry"
+                            type="text"
+                            id="event-venue"
+                            name="event-venue"
+                            tabindex="2"
+                            required>
+                            <option 
+                            hidden 
+                            disabled 
+                            selected value>Select Venue</option>
+                            {% for i in venues %}
+                            <option value="{{i['venue_id']}}">{{i['venue_name']}}</option>
+                            {% endfor %}
+                        </select>
+                        </div>       
+                        <div class="form-field--entry">
+                            <label
+                            class="form-field--label"
+                            for="event-date">Date: *</label><br>
+                            <input
+                            class="form-field-entry"
+                            type="date"
+                            id="event-date"
+                            name="event-date"
+                            tabindex="4"
+                            required>
+                        </div>
+                        <div class="form-field--entry">
+                            <label
+                            class="form-field--label"
+                            for="event-price-mem">Member Price: * </label><br>
+                            <input
+                            class="form-field-entry"
+                            type="number"
+                            inputmode="numeric"
+                            min="0" max="100000000" step="0.01"
+                            id="event-price-mem"
+                            name="event-price-mem"
+                            tabindex="6"
+                            required
+                            >          
+                        </div>
+                </div>                    
+        </div>
+
+            <div class="form-field">
+                <input
+                    class="submit-button" 
+                    type="submit"
+                    value="Add"
+                    tabindex="7">            
+            </div>
+        </form>
+    </div>
+{% endblock %}

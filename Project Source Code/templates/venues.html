@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <title>Manage Venues</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Koulen&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="pageTitle">{% block title %} Manage Venues {% endblock %}</h1>
+    
+    <div class ="tableContents">
+            <div class ="tableContents">
+                    <div class="table-scroll">
+                        <table class="entity-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Capacity</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip Code</th>
+                                <th></th>
+                            </tr>
+                            {% for i in venues %}
+                            <tr class="entity-table--row">
+                                <td class="entity-table--information">{{i['venue_id']}}</td>
+                                <td class="entity-table--information">{{i['venue_name']}}</td>
+                                <td class="entity-table--information">{{i['capacity']}}</td>
+                                <td class="entity-table--information">{{i['address']}}</td>
+                                <td class="entity-table--information">{{i['city']}}</td>
+                                <td class="entity-table--information">{{i['state']}}</td>
+                                <td class="entity-table--information">{{i['zip']}}</td>
+                                <td class="entity-table--icons-column">
+                                    <a href="delete_venue/{{i.venue_id}}">
+                                        <button type="button" class="icon-button">
+                                            <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">
+                                        </button>
+                                    </a>
+                                    <a href="update_venue/{{i.venue_id}}">
+                                        <button type="button" class="icon-button">
+                                            <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">
+                                        </button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            </div> 
+        </div>
+        <div class="key">
+            <p class="key-item"><img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">  Edit Venue
+            <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">  Delete Venue</p>
+        </div> 
+        <div class ="addAttributes">
+            <h2 class="addFormTitle">Add Venue</h2>
+            <form class="addForm" action="/venues" method="POST">
+                <div class="form-field--container">
+                    <div class="form-field-float">
+                        <div class="form-field--entry">
+                            <label
+                                class="form-field--label"
+                                for="venue-name">Name: *</label><br>
+                            <input
+                                class="form-field-entry"
+                                type="text"
+                                id="venue-name"
+                                name="venue-name"
+                                tabindex="1"
+                                required>
+                        </div>                       
+                        <div class="form-field--entry">
+                            <label
+                                class="form-field--label"
+                                for="venue-address">Address: *</label><br>
+                            <input
+                                class="form-field-entry"
+                                type="text"
+                                id="venue-address"
+                                name="venue-address"
+                                tabindex="3"
+                                required>
+                        </div>
+                        <div class="form-field--entry">
+                            <label
+                            class="form-field--label"
+                            for="venue-state">State: *</label><br>
+                            <select
+                            class="form-field-entry"
+                            type="text"
+                            id="venue-state"
+                            name="venue-state"
+                            tabindex="5"
+                            required>
+                                <option 
+                                hidden 
+                                disabled 
+                                selected value>Select State</option>
+                                {% for state in states %}
+                                <option id={{state[0]}} value={{state[0]}}> {{state[1]}} </option>
+                                {% endfor %}
+                            </select>
+                        </div>        
+                    </div>    
+                    <div class="form-field-float">
+                        <div class="form-field--entry">
+                            <label
+                                class="form-field--label"
+                                for="venue-capacity">Venue Capacity: *</label><br>
+                            <input
+                                class="form-field-entry"
+                                type="number"
+                                inputmode="numeric"
+                                min="0" max="1000" step="1"
+                                id="venue-capacity"
+                                name="venue-capacity"
+                                tabindex="2"
+                                required>
+                        </div>   
+                        <div class="form-field--entry">
+                                <label
+                                class="form-field--label"
+                                for="venue-name">City: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="venue-city"
+                                name="venue-city"
+                                tabindex="4"
+                                required>
+                        </div>
+                        <div class="form-field--entry">
+                                <label
+                                class="form-field--label"
+                                for="venue-zip">Zip Code: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="tel"
+                                pattern="[0-9]{5}"
+                                title="Enter 5 digit ZIP"
+                                placeholder="5-digit ZIP"
+                                id="venue-zip"
+                                name="venue-zip"
+                                tabindex="6"
+                                required>
+                        </div>
+                    </div>
+                </div>                    
+                <div class="form-field">
+                        <input
+                        class="submit-button" 
+                        type="submit"
+                        value="Add"
+                        tabindex="7">            
+                </div>
+            </form>
+        </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class ="addAttributes">
+        <script>
+        function goBack() {
+            window.history.back();
+        }
+        </script>
+        <h2 class="addFormTitle">Update Performance</h2>
+        <form class="addForm" action="/update_performance" method="POST">
+            <div class="form-field--container">
+                <div class="form-field-float">
+                    <input
+                    class="form-field-entry"
+                    type="hidden"
+                    id="performance-id"
+                    name="performance-id"
+                    value="{{ data[0].events_has_performers_id }}"
+                    required>
+                    <label
+                    class="form-field--label"
+                    for="performance-event">Event: *</label><br>
+                    <select
+                    class="form-field-entry"
+                    type="text"
+                    id="performance-event"
+                    name="performance-event"
+                    >
+                        <option selected value="{{data[0].event_id}}">{{data[0].event_name}}</option>
+                        {% for i in events %}
+                            {% if data[0].event_name != i.event_name %}
+                                <option value="{{i.event_id}}">{{ i.event_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>    
+                </div><br>
+                <div class="form-field-float">
+                    <label
+                    class="form-field--label"
+                    for="performance-performer">Performer: *</label><br>
+                    <select
+                    class="form-field-entry"
+                    type="text"
+                    id="performance-performer"
+                    name="performance-performer"
+                    >
+                        <option selected value="{{data[0].performer_id}}">{{data[0].performer_name}}</option>
+                        {% for i in performers %}
+                            {% if data[0].performer_name != i.performer_name %}
+                                <option value="{{i.performer_id}}">{{ i.performer_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>    
+                </div><br>
+            </div>
+            <div class="form-field">
+                    <input  
+                    class="submit-button" 
+                    type="submit"
+                    value="Update">
+                    <button  
+                    class="cancel-button"
+                    type="button"
+                    onClick= "goBack()"
+                    value="Cancel"
+                    >Cancel</button>    
+            </div>
+        </form>
+    </div>    
+{% endblock %}

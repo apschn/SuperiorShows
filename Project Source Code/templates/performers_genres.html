@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="pageTitle">{% block title %}{% endblock %}</h1>
+    <div>
+    <div class="form-field--container">
+        <div class="form-field--float">
+            <div class ="tableContents">
+                <h2 class="tableTitle">Manage Performers</h2>
+                    <div class="table-scroll">
+                        <table class="entity-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Manager Email</th>
+                                <th>Standard Rate</th>
+                                <th>Genre</th>
+                                <th></th>
+                            </tr>
+                            {% for i in performers %}    
+                            <tr class="entity-table--row">
+                                <td class="entity-table--information">{{i['performer_id']}}</td>
+                                <td class="entity-table--information">{{i['performer_name']}}</td>
+                                <td class="entity-table--information">{{i['manager_email']}}</td>
+                                <td class="entity-table--information">{{i['standard_rate']}}</td>
+                                <td class="entity-table--information"> {{i['primary_genre_description']}} </td>
+                                <td class="entity-table--icons-column">
+                                    <a href="delete_performer/{{i.performer_id}}">
+                                    <button type="button" class="icon-button">
+                                        <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">
+                                    </button>
+                                    </a>
+                                    <a href="update_performer/{{i.performer_id}}">
+                                        <button type="button" class="icon-button">
+                                            <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            </div> 
+            <div class="key">
+                <p class="key-item"><img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">  Edit Performer
+                <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">  Delete Performer</p>
+            </div> 
+            <div class ="addAttributes">
+                <h2 class="addFormTitle">Add Performer</h2>
+                <form class="addForm" action="/add_performer" method="POST">
+                    <div class="form-field--container">
+                        <div class="form-field-float">
+                            <div class="form-field--entry">
+                                <label
+                                    class="form-field--label"
+                                    for="performer-name">Name: *</label><br>
+                                <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="performer-name"
+                                    name="performer-name"
+                                    tabindex="1"
+                                    required>
+                            </div>
+                            <div class="form-field--entry">
+                                <label
+                                    class="form-field--label"
+                                    for="performer-genre">Genre: </label><br>
+                                <select
+                                    class="form-field-entry"
+                                    type="text"
+                                    id="performer-genre"
+                                    name="performer-genre"
+                                    tabindex="3">
+                                        <option 
+                                        hidden 
+                                        selected value
+                                        value="">Select Genre</option>
+                                        <option value="">None</option>
+                                        {% for i in genres %}
+                                        <option value="{{i['primary_genre_id']}}">{{i['primary_genre_description']}}</option>
+                                        {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-field-float">
+                            <div class="form-field--entry">
+                                <label
+                                    class="form-field--label"
+                                    for="performer-email">Manager Email: *</label><br>
+                                <input
+                                    class="form-field-entry"
+                                    type="text"
+                                    inputmode="email"
+                                    id="performer-email"
+                                    name="performer-email"
+                                    tabindex="2"
+                                    required>
+                            </div>
+                            <div class="form-field--entry">
+                                <label
+                                    class="form-field--label"
+                                    for="performer-rate">Standard Rate: </label><br>
+                                <input
+                                    class="form-field-entry"
+                                    type="number"
+                                    inputmode="numeric"
+                                    min="0" max="100000000" step="0.01"
+                                    id="performer-rate"
+                                    name="performer-rate"
+                                    tabindex="4">       
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field-performer">
+                        <input
+                        class="submit-button" 
+                        type="submit"
+                        value="Add"
+                        tabindex="5">            
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="form-field--float">
+            <div class ="tableContents">
+                <h2 class="tableTitle">Manage Genres</h2>
+                    <div class="table-scroll">
+                        <table class="entity-table">
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th></th>
+                            {% for i in genres %}
+                            <tr class="entity-table--row">
+                                <td class="entity-table--information">{{i['primary_genre_id']}}</td>
+                                <td class="entity-table--information">{{i['primary_genre_description']}}</td>
+                                <td class="entity-table--icons-column">
+                                    <a href="delete_genre/{{i.primary_genre_id}}">
+                                    <button type="button" class="icon-button">
+                                        <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">
+                                    </button>
+                                    </a>
+                                    <a href="update_genre/{{i.primary_genre_id}}">
+                                        <button type="button" class="icon-button">
+                                            <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            </div>  
+            <div class="key">
+                <p class="key-item"><img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">  Edit Genre   
+                <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">  Delete Genre</p>
+            </div> 
+            <div class ="addAttributes">
+                <h2 class="addFormTitle">Add Genre</h2>
+                <form class="addForm-small" action="/add_genre" method="POST">
+                    <div class= "button-center-div-small">
+                        <input  
+                            class="form-field--entry"
+                            type="text"
+                            id="genre-name"
+                            name="genre-name"
+                            required>
+                        <input  
+                            class="submit-button" 
+                            type="submit"
+                            value="Add">
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class ="addAttributes">
+        <script>
+        function goBack() {
+                window.history.back();
+        }
+        </script>
+        <h2 class="addFormTitle">Update Performer</h2>
+        <form class="addForm" action="/update_performer" method="POST">
+            <div class="form-field--container">
+                <div class="form-field-float">
+                        <div class="form-field--entry">
+                                <input
+                                class="form-field-entry"
+                                type="hidden"
+                                id="performer-id"
+                                name="performer-id"
+                                value="{{ data[0].performer_id }}"
+                                required>
+                                <label
+                                class="form-field--label"
+                                for="performer-name">Name: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="performer-name"
+                                name="performer-name"
+                                value="{{ data[0].performer_name }}"
+                                tabindex="1"
+                                required>
+                        </div>
+                        <div class="form-field--entry">
+                                <label
+                                class="form-field--label"
+                                for="performer-genre">Genre:</label><br>
+                                <select
+                                class="form-field-entry"
+                                type="text"
+                                id="performer-genre"
+                                name="performer-genre"
+                                tabindex="3">
+                                        <option value="">None</option>
+                                        {% for i in genres %}
+                                                {% if data[0].primary_genre_description != i.primary_genre_description %}
+                                                        <option value="{{ i.primary_genre_id}}">{{ i.primary_genre_description }}</option>
+                                                {% else %}
+                                                        <option selected value="{{data[0].primary_genre_id}}">{{data[0].primary_genre_description}}</option>
+                                                {% endif %}
+                                        {% endfor %}
+                                </select>
+                        </div>
+                </div>
+                <div class="form-field-float">
+                        <div class="form-field--entry">
+                                <label
+                                class="form-field--label"
+                                for="performer-email">Manager Email: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                inputmode="email"
+                                id="performer-email"
+                                name="performer-email"
+                                value="{{ data[0].manager_email }}"
+                                tabindex="2"
+                                required>
+                        </div>
+                        <div class="form-field--entry">
+                                <label
+                                class="form-field--label"
+                                for="performer-rate">Standard Rate: </label><br>
+                                <input
+                                class="form-field-entry"
+                                type="number"
+                                inputmode="numeric"
+                                min="0" max="100000000" step="0.01"
+                                id="performer-rate"
+                                name="performer-rate"
+                                value="{{ data[0].standard_rate }}"
+                                tabindex="4">       
+                                </div>
+                </div>
+        </div>
+        <div class="form-field">
+                <input
+                class="submit-button" 
+                type="submit"
+                value="Update"
+                tabindex="5">  
+                <button  
+                class="cancel-button"
+                onClick= "goBack()"
+                type="button"
+                value="Cancel"
+                tabindex="6">Cancel</button>             
+        </div>
+    </form>
+    </div>
+{% endblock %}

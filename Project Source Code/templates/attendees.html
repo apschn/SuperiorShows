@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="pageTitle">{% block title %} Manage Attendees {% endblock %}</h1>
+
+    <div class ="tableContents">
+            <div class="table-scroll">
+                <table class="entity-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Birthday</th>
+                        <th>Email</th>
+                        <th>Membership</th>
+                        <th></th>
+                    </tr>
+                    {% for i in attendees %}
+                    <tr class="entity-table--row">
+                        <td class="entity-table--information">{{i['attendee_id']}}</td>
+                        <td class="entity-table--information">{{i['first_name']}}</td>
+                        <td class="entity-table--information">{{i['last_name']}}</td>
+                        <td class="entity-table--information">{{i['birthday']}}</td>
+                        <td class="entity-table--information">{{i['attendee_email']}}</td>
+                        {% if i['is_member'] == "A" %}
+                            <td class="entity-table--information">Active</td>
+                        {% else %}
+                            <td class="entity-table--information">Inactive</td>
+                        {% endif %}
+                        <td class="entity-table--icons-column">
+                            <a href="delete_attendee/{{i.attendee_id}}">
+                                <button type="button" class="icon-button">
+                                    <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">
+                                </button>
+                            </a>
+                            <a href="update_attendee/{{i.attendee_id}}">
+                                <button type="button" class="icon-button" data-toggle="modal" data-target = >
+                                    <img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </table>
+            </div>
+    </div> 
+    <div class="key">
+        <p class="key-item"><img id="editEntity" class ="entity-table--icon" alt="edit" src="{{url_for('static', filename='icon-edit.png')}}">  Edit Attendee
+        <img id="deleteEntity" class ="entity-table--icon" alt="delete" src="{{url_for('static', filename='icon-delete.png')}}">  Delete Attendee</p>
+    </div>  
+    <div class ="addAttributes">
+        <h2 class="addFormTitle">Add Attendee</h2>
+        <form class="addForm" action="/attendees" name="Add" method="POST">
+                <div class="form-field--container">
+                        <div class="form-field-float">
+                                <label
+                                class="form-field--label"
+                                for="attendee-name">First Name: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="attendee-fname"
+                                name="attendee-fname"
+                                tabindex="1"
+                                required><br>
+                                <label
+                                class="form-field--label"
+                                for="attendee-email">Email:</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                inputmode="email"
+                                id="attendee-email"
+                                name="attendee-email"
+                                tabindex="4">
+                        </div>
+                        <div class="form-field-float">
+                                <label
+                                class="form-field--label"
+                                for="attendee-lname">Last Name: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="attendee-lname"
+                                name="attendee-lname"
+                                tabindex="2"
+                                required
+                                t><br>
+                                <label
+                                class="form-field--label"
+                                for="attendee-is-member">Member Status: *</label><br>
+                                    <select
+                                    class="form-field-entry"
+                                    id="attendee-is-member"
+                                    name="attendee-is-member"
+                                    tabindex="5"
+                                    required>
+                                        <option 
+                                        hidden 
+                                        disabled 
+                                        selected value>Select Status</option>
+                                        <option value="A">Active</option>
+                                        <option value="I">Inactive</option>
+                                    </select><br>
+                        </div>
+                        <div class="form-field-float">
+                                <label
+                                class="form-field--label"
+                                for="attendee-rate">Birthday: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="date"
+                                id="attendee-birthday"
+                                name="attendee-birthday"
+                                tabindex="3"
+                                required>     
+                        </div><br>
+                </div>
+                <div class="form-field">
+                        <input  
+                        class="submit-button" 
+                        type="submit"
+                        value="Add"
+                        tabindex="6"> 
+                </div>
+        </form>
+    </div>
+{% endblock %}

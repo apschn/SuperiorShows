@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    <script>
+    function goBack() {
+      window.history.back();
+    }
+    </script>
+    <div class ="addAttributes">
+        <h2 class="addFormTitle">Update Genre</h2>
+        <form class="addForm" action="/update_genre" method="POST">
+            <div class= "button-center-div">
+                <input
+                class="form-field-entry"
+                type="hidden"
+                id="genre-id"
+                name="genre-id"
+                value="{{ data[0].primary_genre_id }}"
+                required>
+                <input  
+                    class="form-field--entry"
+                    type="text"
+                    id="genre-name"
+                    name="genre-name"
+                    value="{{ data[0].primary_genre_description }}"
+                    required>  
+                <input  
+                    class="submit-button" 
+                    type="submit"
+                    value="Update">
+                <button  
+                    class="cancel-button"
+                    onClick= "goBack()"
+                    type="button"
+                    value="Update">Cancel</button>              
+            </div>
+        </form>
+    </div>
+{% endblock %}

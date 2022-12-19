@@ -1,0 +1,356 @@
+* {
+    font-family: 'Koulen', cursive;
+}
+
+html { 
+    background: url('/static/lakeSuperior.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+body {
+    max-width: 75vw;
+    min-width: fit-content;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 7px 5px 7px #000000;
+    background-color: rgb(255, 255, 255, 0.7)
+
+}
+
+.entity-page-header {
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.entity-table {
+    padding: 10px;
+    border: none; 
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    min-width: 275px;
+}
+
+
+.entity-table th { 
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 5px; 
+    font-weight: 600;
+    font-family: 'Akshar', sans-serif;
+    border-left: 1px solid  rgb(255, 255, 255); 
+}
+
+.entity-table td { 
+    border-left: 1px solid rgb(255, 255, 255); 
+    font-family: 'Akshar', sans-serif;
+    font-weight: 300;
+    width: fit-content + 15px;
+}
+
+.entity-table td:first-child { 
+    border-left: none;
+    font-family: 'Akshar', sans-serif;
+}
+
+.entity-table--icons-column {
+    padding: 3px;
+    align-content: center;
+    min-width: fit-content;
+    max-width: fit-content;
+}
+
+.entity-table--icons-column-e {
+    padding: 3px;
+    align-content: center;
+    min-width: 83px;
+    max-width: 83px;
+}
+
+.table-scroll {
+    margin: 0 auto;
+    padding: 0 px;
+    border: 2px #000000;
+    border-style: solid;
+    border-radius: 5px;
+    text-align: left;
+    width: fit-content;
+    min-width: 280px;
+    height: 450px;
+    overflow: auto;
+    background-color: #f5f5f5;
+}
+
+.entity-table--row:nth-child(even) {
+    background-color: #e5e5e5;
+}
+
+.entity-table--row:hover{
+    background-color: #a5c7f5;
+}
+
+.seeAttendance {
+    align-content: center;
+}
+
+.entity-table--information {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.addForm {
+    margin: 5px auto;
+    width: fit-content;
+    min-width: 300px;
+    border: 2px #000000;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 8px;
+    align-content: center;
+    background-color: #f5f5f5;
+}
+
+.addForm-small {
+    margin: 5px auto;
+    width: 275px;
+    border: 2px #000000;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #f5f5f5;  
+}
+
+.form-field--container {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    text-align: left;
+    width: fit-content;
+    margin: auto;
+}
+
+.form-field-float{
+    flex: 1;
+    align-content: top;
+    padding: 10px;
+}
+
+
+.form-field--label {
+    padding: 3px;
+    padding-bottom: 0px;
+    text-align: left;
+    margin: 0px;
+    font-size: 17px;
+}
+
+.form-field--entry {
+    padding: 3px;
+    align-content: left;
+}
+
+.button-center-div {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.button-center-div-small {
+    display: flex;
+    align-items: center;
+    width: 240px;
+}
+
+.checkbox-label {
+    padding: 3px;
+}
+
+.submit-button {
+    margin: 15px;
+    margin-bottom: 10px;
+    padding: 3px;
+    font-family: 'Koulen', cursive;
+    font-size: 17px;
+    background-color: rgb(142, 190, 152);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-width: 1px;
+    border-color:  #616161;
+    border-radius: 3px;
+    border-style: solid;
+    transition: 0.4s;
+}
+
+.submit-button:hover {
+    background-color: rgb(110, 175, 124);
+    font-size: 18px;
+}
+
+.cancel-button {
+    margin: 15px;
+    margin-bottom: 10px;
+    padding: 3px;
+    font-family: 'Koulen', cursive;
+    font-size: 17px;
+    background-color: rgb(194, 122, 122);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-width: 1px;
+    border-color:  #616161;
+    border-radius: 3px;
+    border-style: solid;
+    transition: 0.4s;
+}
+
+.cancel-button:hover {
+    background-color: rgb(194, 85, 85);
+    font-size: 18px;
+}
+
+.addAttributes {
+    margin-top: 20px;
+}
+
+
+.updateAttributes {
+    margin: 5px auto;
+    width: 500px;
+    border: 2px #000000;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.addFormTitle {
+    text-align: center;
+    margin: 3px;
+}
+
+.tableTitle {
+    text-align: center;
+    margin: 3px;
+}
+
+.tableContents {
+    margin: 8px;
+}
+
+.entity-table--icon {
+    width: 20px;
+    height: 20px;
+    transition: 0.04s;
+}
+
+.entity-table--icon:hover {
+    width: 23px;
+    height: 23px;
+} 
+
+.icon-button {
+    float:right;
+    padding: 0px;
+    width: 25px;
+    height: 25px;
+    color: transparent;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.checkbox-input {
+    display: flex;
+    align-content: center;
+}
+
+.checkbox-input-label {
+    float:left;
+    margin: 0px;
+}
+
+.checkbox-input-check {
+    float:left;
+    margin: 7px;
+}
+
+.btn {
+padding: 0.15rem 0.50rem;
+}
+
+.nav-link {
+    padding: 0.5rem;
+    color: #616161;
+}
+
+.homepage-image {
+    max-width: 80%;
+    height: auto;
+}
+
+.pageTitle {
+    line-height: 75%;
+    margin-bottom: 15px;
+}
+
+.pageSubtitle {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.footer {
+    margin-bottom: 7px;
+}
+
+.form-field-performer {
+    width: fit-content;
+    margin: auto
+}
+
+.updateForm {
+    background-color: white;
+}
+
+input, select, option {
+    font-family: 'Akshar', sans-serif;
+}
+
+select {
+    height: 30px !important;
+}
+
+
+.delete-msg-btns {
+    margin: auto;
+    width: fit-content;
+}
+
+.delete-msg-btns button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.key {
+    margin: 5px auto;
+    width: fit-content;
+    border: 2px #000000;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 8px;
+    align-content: center;
+    background-color: #f5f5f5;
+}
+
+.key-item{
+    margin: 0;
+    width: fit-content;
+}

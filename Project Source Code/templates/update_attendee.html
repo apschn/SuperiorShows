@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class ="addAttributes">
+        <script>
+        function goBack() {
+                window.history.back();
+        }
+        </script>
+        <h2 class="addFormTitle">Update Attendee</h2>
+        <form class="addForm" id="updateAttendee" action="/update_attendee" method="POST">
+                <div class="form-field--container">
+                        <div class="form-field-float">
+                                <input
+                                class="form-field-entry"
+                                type="hidden"
+                                id="attendee-id"
+                                name="attendee-id"
+                                value="{{ data[0].attendee_id }}"
+                                required>
+                                <label
+                                class="form-field--label"
+                                for="attendee-name">First Name: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="attendee-fname"
+                                name="attendee-fname"
+                                value="{{ data[0].first_name }}"
+                                required><br>
+                                <label
+                                class="form-field--label"
+                                for="attendee-email">Email:</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                inputmode="email"
+                                id="attendee-email"
+                                value="{{ data[0].attendee_email }}"
+                                name="attendee-email">
+                        </div>
+                        <div class="form-field-float">
+                                <label
+                                class="form-field--label"
+                                for="attendee-genre">Last Name: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="text"
+                                id="attendee-lname"
+                                name="attendee-lname"
+                                value="{{ data[0].last_name }}"
+                                required><br>
+                                <label
+                                class="form-field--label"
+                                for="attendee-is-member">Member Status: </label><br>
+                                    <select
+                                    class="form-field-entry"
+                                    id="attendee-is-member"
+                                    name="attendee-is-member"
+                                    value="{{ data[0].is_member }}"
+                                    required>
+                                            <option value="A"
+                                            {% if data[0].is_member == "A" %}
+                                            selected="selected"
+                                            {% endif %}
+                                            >Active</option>
+                                            <option value="I"
+                                            {% if data[0].is_member == "I" %}
+                                            selected="selected"
+                                            {% endif %}>Inactive</option>
+                                    </select><br>
+                                </div>                        
+                        </div>
+                        <div class="form-field-float">
+                                <label
+                                class="form-field--label"
+                                for="attendee-rate">Birthday: *</label><br>
+                                <input
+                                class="form-field-entry"
+                                type="date"
+                                id="attendee-birthday"
+                                value="{{ data[0].birthday }}"
+                                name="attendee-birthday"
+                                required>     
+                        </div><br>
+                </div>
+                <div class="form-field">
+                        <input  
+                        class="submit-button" 
+                        type="submit"
+                        value="Update"
+                        name="update_attendee"> 
+                        <button  
+                        class="cancel-button"
+                        onClick= "goBack()"
+                        type="button"
+                        value="Cancel"
+                        tabindex=""
+                        >Cancel</button>    
+                </div>
+        </form>
+    </div>
+
+
+{% endblock %}

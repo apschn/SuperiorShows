@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+        <h2 class="pageTitle">{% block title %} Update Event {% endblock %}</h2> 
+        <div class ="addAttributes">
+                <form class="addForm" action="/update_event" method="POST">
+                        <div class="form-field--container">
+                        <div class="form-field-float">
+                                <div class="form-field--entry">
+                                        <input
+                                        class="form-field-entry"
+                                        type="hidden"
+                                        id="event-id"
+                                        name="event-id"
+                                        value="{{ data[0].event_id }}"
+                                        required>
+                                        <label
+                                        class="form-field--label"
+                                        for="event-name">Name: *</label><br>
+                                        <input
+                                        class="form-field-entry"
+                                        type="text"
+                                        id="event-name"
+                                        name="event-name"
+                                        value="{{ data[0].event_name }}"
+                                        tabindex="1"
+                                        required>
+                                </div>
+                                <div class="form-field--entry">
+                                        <label
+                                        class="form-field--label"
+                                        for="event-date">Date: *</label><br>
+                                        <input
+                                        class="form-field-entry"
+                                        type="date"
+                                        id="event-date"
+                                        name="event-date"
+                                        value="{{ data[0].event_date }}"
+                                        tabindex="3"
+                                        required>
+                                </div>
+                                <div class="form-field--entry">
+                                        <label
+                                        class="form-field--label"
+                                        for="event-price">Regular Price: *</label><br>
+                                        <input
+                                        class="form-field-entry"
+                                        type="number"
+                                        inputmode="numeric"
+                                        min="0" max="1000" step="0.01"
+                                        id="event-price"
+                                        name="event-price"
+                                        value="{{ data[0].general_ticket_price }}"
+                                        tabindex="5"
+                                        required>
+                                </div>
+                        </div>
+                        <div class="form-field-float">
+                                <div class="form-field--entry">
+                                        <label
+                                        class="form-field--label"
+                                        for="event-venue">Venue: *</label><br>
+                                        <select
+                                        class="form-field-entry"
+                                        type="text"
+                                        id="event-venue"
+                                        name="event-venue"
+                                        tabindex="2"
+                                        required>
+                                        
+                                        {% for i in venues %}
+                                        {% if data[0].venue_name != i.venue_name %}
+                                        <option value="{{i.venue_id}}">{{ i.venue_name }}</option>
+                                        {% else %}
+                                        <option selected value="{{data[0].venue_id}}">{{data[0].venue_name}}</option>                                                        
+                                        {% endif %}
+                                        {% endfor %}
+                                        </select>
+                                </div>       
+                                <div class="form-field--entry">
+                                        <label
+                                        class="form-field--label"
+                                        for="event-min-age">Age Restriction:</label><br>
+                                        <input
+                                        class="form-field-entry"
+                                        type="number"
+                                        inputmode="numeric"
+                                        min="0" max="150" step="1"
+                                        id="event-min-age"
+                                        name="event-min-age"
+                                        value="{{ data[0].age_restriction }}"
+                                        tabindex="4">
+                                        </input>
+                                </div>                            
+                                <div class="form-field--entry">
+                                        <label
+                                        class="form-field--label"
+                                        for="event-price-meme">Member Price: * </label><br>
+                                        <input
+                                        class="form-field-entry"
+                                        type="number"
+                                        inputmode="numeric"
+                                        min="0" max="100000000" step="0.01"
+                                        id="event-price-mem"
+                                        name="event-price-mem"
+                                        value="{{ data[0].member_ticket_price }}"
+                                        tabindex="6"
+                                        required>       
+                                </div>
+                        </div>                    
+                </div>
+                <div class="form-field">
+                        <input
+                        class="submit-button" 
+                        type="submit"
+                        value="Update"
+                        tabindex="7"> 
+                        <button  
+                        class="cancel-button"
+                        onClick= "goBack()"
+                        type="button"
+                        value="Cancel"
+                        tabindex="8">Cancel</button>           
+                </div>
+                </form>
+        </div>
+{% endblock %}

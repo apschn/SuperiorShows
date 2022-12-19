@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Superior Shows</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300;400&family=Koulen&display=swap" rel="stylesheet">
+    <body className="mainContainer">
+    <nav class="navbar navbar-fixed-top navbar-light bg-light">
+        <div class="navbar-header pull-left">
+          <button type="button" class="btn btn-default navbar-btn"><a class="navbar-brand" href="{{url_for('index')}}">Superior Shows</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('index')}}">Home</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('venues')}}">Venues</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('events')}}">Events</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('performers')}}">Performers and Genres</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('attendees')}}">Attendees</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('performances')}}">Performances</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a class="nav-link" href="{{url_for('attendances')}}">Attendances</a></button>
+        </div>
+      </nav>
+    <br>
+    {% block content %} {% endblock %}
+    <br>
+    <footer>
+         CS340 | Superior Shows - &copy; 2022
+    </footer>
+    <br>
+</body>
+
+</html>
